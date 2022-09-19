@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Products from "./Products";
 
 const Productslist = () => {
+  const location = useLocation();
+  console.log(location.pathname.split("/")[2]);
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState(`newest`);
+
+  function handleFilters(e) {
+    const value = e.target.value;
+    const name = e.target.name;
+    setFilters({ ...filters, [name]: value });
+  }
+
+  console.log(filters);
+
   return (
     <div>
       <Navbar />
@@ -15,8 +29,8 @@ const Productslist = () => {
           }}
         >
           <div>
-            <span>Filter Products</span>
-            <select name="type">
+            <span>Filter Products : </span>
+            <select name="color" onChange={handleFilters}>
               <option disabled selected>
                 Color
               </option>
@@ -25,7 +39,7 @@ const Productslist = () => {
               <option>Green</option>
               <option>Plum</option>
             </select>
-            <select name="type">
+            <select name="type" onChange={handleFilters}>
               <option disabled selected>
                 Size
               </option>
@@ -37,7 +51,7 @@ const Productslist = () => {
           </div>
           <div>
             <span>Sort Products</span>
-            <select>
+            <select name="clothing" onChange={handleFilters}>
               <option disabled selected>
                 Clothing
               </option>

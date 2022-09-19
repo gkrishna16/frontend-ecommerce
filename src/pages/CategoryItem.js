@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/category.css";
 
 const CategoryItem = ({ im }) => {
@@ -11,13 +12,14 @@ const CategoryItem = ({ im }) => {
         <div
           style={{
             color: `white`,
-                      display: `flex`,
-            
+            display: `flex`,
             justifyContent: `center`,
             alignItems: `center`,
           }}
         >
-          <button>SHOP NOW !</button>
+          <Link to="/product/:category">
+            <button>SHOP NOW !</button>
+          </Link>
           <p>This season all for you.</p>
         </div>
       </div>

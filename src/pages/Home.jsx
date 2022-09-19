@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/assets/Footer";
 import Slider from "../components/assets/slider/Slider";
 import Navbar from "../components/Navbar";
 import Categories from "./Categories";
@@ -10,6 +11,7 @@ const Home = () => {
       <Navbar />
       <Slider />
       <Categories />
+      <Footer />
     </div>
   );
 };
