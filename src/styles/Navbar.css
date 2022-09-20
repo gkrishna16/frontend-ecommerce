@@ -6,6 +6,7 @@
   color: white;
   background-color: rgb(81, 74, 74);
   list-style-type: none;
+  padding: 1.5em;
 }
 .ul-navbar {
   display: flex;
@@ -27,6 +28,10 @@
   }
   .navbar-container {
     flex-direction: column;
+    padding: 1em;
+  }
+  .ul-navbar {
+    gap: 3em;
   }
 }
 a {

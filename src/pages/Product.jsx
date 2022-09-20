@@ -1,8 +1,8 @@
 import React from "react";
-import Circle from "../components/assets/slider/Circle";
+// import Circle from "../components/assets/slider/Circle";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import FavoriteBorderOutlined from "@mui/icons-material/SearchOutlined";
+// import FavoriteBorderOutlined from "@mui/icons-material/SearchOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "../styles/Products.css";
 import { Link } from "react-router-dom";

@@ -40,7 +40,7 @@ const Productslist = () => {
               <option>grey</option>
             </select>
             <select name="size" onChange={handleFilters}>
-              <option disabled selected>
+              <option disabled defaultValue="size">
                 Size
               </option>
               <option>XS</option>

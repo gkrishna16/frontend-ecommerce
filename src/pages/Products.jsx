@@ -1,15 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import { popularProducts } from "../data";
+// import Navbar from "../components/Navbar";
+// import { popularProducts } from "../data";
 import Product from "./Product";
-
-let url = `http://localhost:5002/api/products`;
+// let url = `http://localhost:5002/api/products`;
 
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   console.log(cat, { ...filters }, sort);
 
   useEffect(() => {
