@@ -4,6 +4,8 @@ import Slider from "../components/assets/slider/Slider";
 import Navbar from "../components/Navbar";
 import Categories from "./Categories";
 import CategoryItem from "./CategoryItem";
+import Product from "./Product";
+import Products from "./Products";
 
 const Home = () => {
   return (
@@ -11,6 +13,7 @@ const Home = () => {
       <Navbar />
       <Slider />
       <Categories />
+      <Products />
       <Footer />
     </div>
   );

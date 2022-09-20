@@ -5,7 +5,8 @@ import Products from "./Products";
 
 const Productslist = () => {
   const location = useLocation();
-  console.log(location.pathname.split("/")[2]);
+  const cat = location.pathname.split("/")[2];
+  console.log(`category`, cat);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(`newest`);
 
@@ -15,7 +16,8 @@ const Productslist = () => {
     setFilters({ ...filters, [name]: value });
   }
 
-  console.log(filters);
+  console.log("filters", filters);
+  console.log(`sort`, sort);
 
   return (
     <div>
@@ -31,15 +33,13 @@ const Productslist = () => {
           <div>
             <span>Filter Products : </span>
             <select name="color" onChange={handleFilters}>
-              <option disabled selected>
-                Color
-              </option>
               <option>Red</option>
               <option>Yellow</option>
               <option>Green</option>
               <option>Plum</option>
+              <option>grey</option>
             </select>
-            <select name="type" onChange={handleFilters}>
+            <select name="size" onChange={handleFilters}>
               <option disabled selected>
                 Size
               </option>
@@ -47,21 +47,19 @@ const Productslist = () => {
               <option>S</option>
               <option>XL</option>
               <option>L</option>
+              <option>M</option>
             </select>
           </div>
           <div>
-            <span>Sort Products</span>
-            <select name="clothing" onChange={handleFilters}>
-              <option disabled selected>
-                Clothing
-              </option>
-              <option>Shirt</option>
-              <option>Trouser</option>
-              <option>Jeans</option>
+            <span>Sort Products : </span>
+            <select name="clothing" onChange={(e) => setSort(e.target.value)}>
+              <option value="newest">Newest</option>
+              <option value="asc">Price(asc)</option>
+              <option value="desc">Price(desc)</option>
             </select>
           </div>
         </div>
-        <Products />
+        <Products cat={cat} filters={filters} sort={sort} />
       </div>
     </div>
   );

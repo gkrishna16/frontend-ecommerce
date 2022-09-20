@@ -17,7 +17,7 @@ const CategoryItem = ({ im }) => {
             alignItems: `center`,
           }}
         >
-          <Link to="/product/:category">
+          <Link to="/products/women">
             <button>SHOP NOW !</button>
           </Link>
           <p>This season all for you.</p>

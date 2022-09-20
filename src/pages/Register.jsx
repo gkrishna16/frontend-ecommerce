@@ -10,12 +10,12 @@ const Register = () => {
           <div>
             <h1>CREATE AN ACCOUNT</h1>
             <div>
-              <div>
+              <div className="input-box-flex">
                 <input placeholder="name" />
                 <input placeholder="lastname" />
                 <input placeholder="username" />
               </div>
-              <div>
+              <div className="input-box-flex">
                 <input placeholder="email" />
                 <input placeholder="password" />
                 <input placeholder="confirm password" />

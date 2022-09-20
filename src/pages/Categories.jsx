@@ -12,7 +12,7 @@ const Categories = () => {
         {slides.map((im, index) => {
           return (
             <div>
-              <CategoryItem im={im} />\{" "}
+              <CategoryItem im={im} />{" "}
             </div>
           );
         })}

@@ -29,6 +29,9 @@
   opacity: 0;
   transition: all 0.8s ease;
 }
+.icon-onpic {
+  color: black;
+}
 
 .info:hover > .icon {
   opacity: 1;
