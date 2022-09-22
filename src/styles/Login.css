@@ -1,0 +1,39 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16em;
+  text-align: left;
+}
+
+.form-box {
+  width: 700px;
+  border: 1px solid black;
+  padding: 2em;
+}
+.form-container {
+  /* text-align: left; */
+}
+.input-box-flex > * {
+  margin: 1px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-box {
+    padding: 0.4em;
+    margin: 10px;
+  }
+
+  .input-box-flex {
+    display: grid;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .input-box-flex {
+    display: grid;
+  }
+  .form-box {
+    padding: 0.4em;
+    margin: 10px;
+  }
+} ;
