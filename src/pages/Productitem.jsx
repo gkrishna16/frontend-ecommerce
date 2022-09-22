@@ -1,8 +1,10 @@
-import { Remove, Add, ClassSharp } from "@mui/icons-material";
+import { Remove, Add } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { addProduct } from "../redux/cartRedux";
 import { publicRequest } from "./RequestMethods";
+import { useDispatch } from "react-redux";
 
 const Productitem = () => {
   const location = useLocation();
@@ -11,7 +13,11 @@ const Productitem = () => {
   const [quantity, setQuantity] = useState(0);
   const [color, setColor] = useState(``);
   const [size, setSize] = useState(``);
+
+  const dispatch = useDispatch();
+
   console.log(id);
+
   useEffect(() => {
     async function getProduct() {
       try {
@@ -36,8 +42,9 @@ const Productitem = () => {
   }
 
   function handleClick() {
-    // update cart
-    alert(`Clicked`);
+    dispatch(
+      addProduct({ product, quantity, price: product.price * quantity })
+    );
   }
 
   console.log(product);
