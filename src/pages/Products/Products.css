@@ -17,16 +17,43 @@
   background-size: cover;
   background-repeat: no-repeat;
   height: 80%;
+  object-fit: cover;
 }
 .mid-icons {
   position: absolute;
   color: white;
   z-index: 1;
   font-size: large;
-  top: 40%;
-  left: 40%;
+  top: 35%;
+  left: 25%;
   display: flex;
   gap: 1em;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease-out;
+}
+
+.product-box:hover {
+  background-color: rgb(222, 240, 240);
+  /* opacity: 0; */
+  opacity: 0.8;
+}
+.mid-icons {
+  opacity: 0;
+}
+
+.product-box:hover .mid-icons {
+  opacity: 2;
+  /* background-color: white; */
+  color: black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.product-box:hover .icon {
+  background-color: white;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  text-align: center;
 }

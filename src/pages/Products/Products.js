@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Products.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import { Link } from "react-router-dom";
+
 const Products = ({ cat, filters, sort }) => {
   console.log(cat, filters, sort);
   const [products, setProducts] = useState([]);
@@ -64,12 +68,18 @@ const Products = ({ cat, filters, sort }) => {
               <img className="box-image" src={p?.img} alt="&" />
               <div className="">{p?.title}</div>
               <div className="mid-icons">
-                <div className="">
-                  {/* <span class="material-symbols-outlined">search</span> */}
-                  <SearchOutlinedIcon />
+                <div className="icon">
+                  <ShoppingCartOutlinedIcon />
                 </div>
-                <div className="">One </div>
-                <div className="">One </div>
+                <div className="icon">
+                  {/* <span class="material-symbols-outlined">search</span> */}
+                  <Link to={`/product/${p?._id}`}>
+                    <SearchOutlinedIcon />
+                  </Link>
+                </div>
+                <div className="icon">
+                  <FavoriteOutlinedIcon />
+                </div>
               </div>
             </div>
           );
