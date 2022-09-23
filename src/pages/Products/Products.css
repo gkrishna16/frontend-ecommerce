@@ -1,0 +1,32 @@
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1em;
+  transition: all 1s ease-out;
+}
+.product-box {
+  /* border: 1px solid black; */
+  height: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 2px 16px;
+  position: relative;
+}
+
+.box-image {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 80%;
+}
+.mid-icons {
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: large;
+  top: 40%;
+  left: 40%;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}

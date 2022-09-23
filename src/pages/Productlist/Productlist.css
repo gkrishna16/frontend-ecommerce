@@ -1,0 +1,10 @@
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+}
+.span-select {
+  margin-right: 2em;
+}
+.productlist-heading {
+  text-align: center;
+}
