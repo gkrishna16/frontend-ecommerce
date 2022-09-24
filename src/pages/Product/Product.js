@@ -5,6 +5,8 @@ import "./Product.css";
 import Navbar from "../../components/navbar/Navbar";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../Redux/cartRedux";
 
 const Product = () => {
   const locationId = useLocation().pathname.split(`/`)[2];
@@ -12,6 +14,10 @@ const Product = () => {
   console.log(locationId);
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(0);
+
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.cart);
+  console.log(`redux products`, products);
 
   useEffect(() => {
     try {
@@ -37,8 +43,9 @@ const Product = () => {
     }
   }
   function handleClick() {
-    console.log(`clicked`);
+    dispatch(addProduct({ product, quantity }));
   }
+
   return (
     <div>
       <Navbar />
