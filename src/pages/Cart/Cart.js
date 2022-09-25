@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { userRequest } from "../../requestMethods";
 import Navbar from "../../components/navbar/Navbar";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import StripeCheckout from "react-stripe-checkout";
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
 const Cart = () => {
-  let { products, quantity } = useSelector((state) => state.cart);
-  console.log(`cart page consoles ---------------------`);
-  console.log(products);
+  let { products, quantity, total } = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate();
+  console.log(navigate.pathname);
 
   function handleQuantity(params) {
     if (params === `desc` && quantity > 1) {
@@ -20,7 +23,27 @@ const Cart = () => {
       // setQuantity(quantity + 1);
     }
   }
-  console.log(KEY);
+
+  function onToken(token) {
+    setStripeToken(token);
+  }
+
+  console.log(stripeToken);
+
+  useEffect(() => {
+    async function makeRequest() {
+      try {
+        const res = await userRequest(`/checkout/payment`, {
+          tokenId: stripeToken,
+          amount: total * 100,
+        });
+        navigate.push(`/success`);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    stripeToken && makeRequest();
+  }, [stripeToken, total, navigate]);
 
   return (
     <div>
@@ -79,7 +102,18 @@ const Cart = () => {
               <div className="">$ 1000</div>
             </div>
             <div className="button-checkout">
-              <button>Proceed to checkout</button>
+              <StripeCheckout
+                name="Lama shop"
+                image={`https://images.unsplash.com/photo-1663966752161-affc2600c845?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
+                billingAddress
+                shippingAddress
+                description=""
+                amount={total * 100}
+                token={onToken}
+                stripeKey={KEY}
+              >
+                <button>Proceed to checkout</button>
+              </StripeCheckout>
             </div>
           </div>
         </div>
