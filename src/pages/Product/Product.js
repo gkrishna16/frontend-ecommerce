@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./Product.css";
 import Navbar from "../../components/navbar/Navbar";
@@ -7,17 +7,25 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../Redux/cartRedux";
+import { border } from "@mui/system";
 
 const Product = () => {
   const locationId = useLocation().pathname.split(`/`)[2];
-  console.log(`---------PRODUCT PAGE-------------`);
-  console.log(locationId);
   const [product, setProduct] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState(``);
+  const [size, setSize] = useState(``);
+
+  console.log(size, color);
 
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.cart);
-  console.log(`redux products`, products);
+  const {
+    products,
+    total,
+    quantity: cartQ,
+  } = useSelector((state) => state.cart);
+
+  console.log(products);
 
   useEffect(() => {
     try {
@@ -26,14 +34,15 @@ const Product = () => {
           `http://localhost:5001/api/products/find/${locationId}`
         );
         setProduct(res.data);
+        // console.log(product.color[0]);
+        setSize(res.data.size[0]);
+        setColor(res.data.color[0]);
       }
       getData();
     } catch (error) {
       console.log(error);
     }
   }, [locationId]);
-
-  console.log(product.color);
 
   function handleQuantity(params) {
     if (params === `desc` && quantity > 1) {
@@ -42,8 +51,17 @@ const Product = () => {
       setQuantity(quantity + 1);
     }
   }
+
   function handleClick() {
-    dispatch(addProduct({ product, quantity }));
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        price: product.price * quantity,
+        color,
+        size,
+      })
+    );
   }
 
   return (
@@ -63,22 +81,28 @@ const Product = () => {
             <h1>$ {product?.price}</h1>
           </div>
           <div>
-            {product?.color?.map((c) => {
-              console.log(c.toLowerCase());
-              return (
-                <div
-                  className="colors"
-                  style={{ backgroundColor: `${c.toLowerCase()}` }}
-                ></div>
-              );
-            })}
+            <span> Color : </span>
+            <select onChange={(e) => setColor(e.target.value)}>
+              {product?.color?.map((c) => {
+                console.log(c.toLowerCase());
+                return (
+                  <option color={c} key={c}>
+                    {c.toLowerCase()}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <span className="size-span">
             <span>Size : </span>
             <span>
-              <select name="" id="">
+              <select onChange={(e) => setSize(e.target.value)}>
                 {product?.size?.map((s) => {
-                  return <option>{s}</option>;
+                  return (
+                    <option size={s} key={s}>
+                      {s}
+                    </option>
+                  );
                 })}
               </select>
             </span>

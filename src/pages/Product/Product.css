@@ -18,19 +18,11 @@
   margin-right: auto;
 }
 
-.colors {
+.size-span {
+  margin-left: 4em;
   width: 25px;
   height: 25px;
-  /* background-color: black; */
-  border-radius: 50%;
-  display: inline-block;
-  margin: 0 0 10px 2px;
-}
-.size-span {
-  /* margin-left: 4em; */
-  /* width: 25px;
-  height: 25px; */
-  /* margin: 0 0 10px 30px; */
+  margin: 0 0 10px 30px;
 }
 
 .button-span {
