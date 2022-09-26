@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import Navbar from "../../components/navbar/Navbar";
 import "./Success.css";
 
 const Success = () => {
@@ -7,7 +8,12 @@ const Success = () => {
 
   console.log(location);
 
-  return <div>Success</div>;
+  return (
+    <div>
+      <Navbar />
+      <div className="">Your payment was successful.</div>
+    </div>
+  );
 };
 
 export default Success;

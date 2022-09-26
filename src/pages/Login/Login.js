@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import { login } from "../../Redux/apiCalls";
+import "./Login.css";
 
 const Login = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { isFetching, error } = useSelector((state) => state.user);
 
-  const handleCliclk = (e) => {
-    e.prevent.default();
+  function handleSubmit(e) {
+    e.preventDefault();
     login(dispatch, { username, password });
-  };
-
-  function handleSubmit(e) {}
+    navigate("/");
+  }
 
   console.log(username, password);
   return (
@@ -22,9 +25,25 @@ const Login = () => {
       <Navbar />
       <div className=""></div>
       <div className="">
-        <input onChange={(e) => setUsername(e.target.value)} />
-        <input onChange={(e) => setPassword(e.target.value)} />
-        <button>Submit </button>
+        <input
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+          type="text"
+        />
+        <input
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+        />
+        <button
+          className={isFetching ? "butdis" : "but"}
+          onClick={handleSubmit}
+          disabled={isFetching}
+        >
+          Submit
+        </button>
+
+        {error && <div className="error-msg">Something went wrong.</div>}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ const KEY = process.env.REACT_APP_STRIPE;
 const Cart = () => {
   let { products, quantity, total } = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
+
   const navigate = useNavigate();
   console.log(navigate.pathname);
 
@@ -28,16 +29,14 @@ const Cart = () => {
     setStripeToken(token);
   }
 
-  console.log(stripeToken);
-
   useEffect(() => {
     async function makeRequest() {
       try {
         const res = await userRequest.post(`/checkout/payment`, {
-          tokenId: stripeToken,
+          tokenId: stripeToken.id,
           amount: total * 100,
         });
-        navigate.push(`/success`, {
+        navigate(`/success`, {
           data: res.data,
         });
       } catch (error) {
@@ -46,6 +45,8 @@ const Cart = () => {
     }
     stripeToken && makeRequest();
   }, [stripeToken, total, navigate]);
+
+  console.log(stripeToken);
 
   return (
     <div>
@@ -95,13 +96,13 @@ const Cart = () => {
             </div>
             <div className="flex">
               <div className="">Shipping Discount : </div>
-              <div className="">$1000</div>
+              <div className="">$ 1000</div>
             </div>
             <div className="flex">
               <div className="">
                 <b>Total :</b>
               </div>
-              <div className="">$ 1000</div>
+              <div className="">$ {total}</div>
             </div>
             <div className="button-checkout">
               <StripeCheckout
