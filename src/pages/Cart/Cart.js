@@ -5,8 +5,8 @@ import Navbar from "../../components/navbar/Navbar";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import StripeCheckout from "react-stripe-checkout";
-import "./Cart.css";
 import { useNavigate } from "react-router-dom";
+import "./Cart.css";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -33,11 +33,13 @@ const Cart = () => {
   useEffect(() => {
     async function makeRequest() {
       try {
-        const res = await userRequest(`/checkout/payment`, {
+        const res = await userRequest.post(`/checkout/payment`, {
           tokenId: stripeToken,
           amount: total * 100,
         });
-        navigate.push(`/success`);
+        navigate.push(`/success`, {
+          data: res.data,
+        });
       } catch (error) {
         console.log(error);
       }

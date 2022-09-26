@@ -1,5 +1,5 @@
 .nav-container {
-  height: 4em;
+  min-height: 4em;
   background-color: rgb(0, 0, 0);
   padding: 10px;
   color: white;
@@ -18,7 +18,17 @@ li a {
 
 .nav-right {
   display: flex;
-  gap: 2em;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+  }
+  .nav-right {
+    gap: 1.5em;
+  }
 }
 /* .nav-right > * {
   margin-left: 50px;
