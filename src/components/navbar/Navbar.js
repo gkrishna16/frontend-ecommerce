@@ -7,6 +7,8 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const { quantity } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
   console.log(`quantity `, quantity);
 
   return (
@@ -25,9 +27,13 @@ const Navbar = () => {
             <li>
               <Link to="/cart">Cart</Link>
             </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            {currentUser === null ? (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li>
               <Link to="/register">Register</Link>
             </li>
